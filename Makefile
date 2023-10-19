@@ -2,11 +2,11 @@
 
 ## build: Билдит бинарный файл
 build:
-	go build -o bin/app -v cmd/segmentation-service/main.go
+	go build -o bin/app -v cmd/main.go
 
 ## run_serv: Запускает сервер grpc
 run:
-	go run cmd/segmentation-service//main.go
+	go run cmd/main.go
 
 ## clean: Очищяет и удаляет бинарный файл
 clean:
@@ -42,5 +42,5 @@ lint:
 	golangci-lint run
 
 help: Makefile
-	@echo " Choose a command run in "user-segmentation-service":"
+	@echo " Choose a command run in "file-storage":"
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'

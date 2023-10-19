@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 
@@ -14,7 +15,7 @@ import (
 )
 
 func main() {
-	cfg, err := config.LoadConfig("./config.yaml")
+	cfg, err := config.LoadConfig("config/config.yaml")
 	if err != nil {
 		utils.ErrorLogger.Fatalf("Failed to load configuration: %v", err)
 	}
@@ -37,6 +38,7 @@ func main() {
 	http.HandleFunc("/status", delivery.StatusHandler)
 	http.Handle("/metrics", promhttp.Handler())
 
+	fmt.Println("Starting server at port :8080")
 	err = http.ListenAndServe(cfg.ServerPort, nil)
 	if err != nil {
 		utils.ErrorLogger.Fatalf("Failed to start server: %v", err)
